@@ -1,3 +1,17 @@
+# HAPドライバーの実行
+
+1. git clone git@github.com:mclab-osaka/livox_ros_driver2.git
+2. cd livox_ros_driver2
+3. sudo docker build . -t {image名}
+4. sudo docker run --net=host -it --rm -e ROS_IP={このPCのip} -e ROS_MASTER_URI=http://{HOSTのip}:11311 -v /{絶対パス}/HAP_driver/livox_ros_driver2/hap_launch.launch:/hap_launch.launch --name={コンテナ名} {image名}
+5. (コンテナ内) source /ws_livox/devel/setup.bash
+6. roslaunch hap_launch.launch
+
+## 注意点
+* livox_ros_driver2/config/HAP_config.json内の"host_net_info"のipと"lidar_configs"のipを確認しておく
+
+
+
 # Livox ROS Driver 2
 
 Livox ROS Driver 2 is the 2nd-generation driver package used to connect LiDAR products produced by Livox, applicable for ROS (noetic recommended) and ROS2 (foxy or humble recommended).

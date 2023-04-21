@@ -16,7 +16,9 @@ RUN apt-get install -y git
 
 RUN sudo apt install cmake
 
-RUN mkdir build && cd build && cmake .. && make -j && sudo make install
+RUN git clone https://github.com/Livox-SDK/Livox-SDK2.git
+
+RUN cd ./Livox-SDK2/ && mkdir -p build && cd build && cmake .. && make -j && sudo make install
 
 RUN mkdir -p /ws_livox/src/livox_ros_driver2
 COPY . /ws_livox/src/livox_ros_driver2

@@ -4,7 +4,13 @@
 git clone git@github.com:mclab-osaka/livox_ros_driver2.git
 cd livox_ros_driver2
 sudo docker build . -t {image名}
-sudo docker run --net=host -it --rm -e ROS_IP={このPCのip} -e ROS_MASTER_URI=http://{HOSTのip}:11311 -v /{絶対パス}/HAP_driver/livox_ros_driver2/hap_launch.launch:/hap_launch.launch --name={コンテナ名} {image名}
+
+sudo docker run --net=host -it --rm -e ROS_IP={このPCのip} \
+-e ROS_MASTER_URI=http://{HOSTのip}:11311 \
+-v /{絶対パス}/HAP_driver/livox_ros_driver2/hap_launch.launch:/hap_launch.launch \
+-v //{絶対パス}/HAP_driver/livox_ros_driver2/config/HAP_config.json:/ws_livox/src/livox_ros_driver2/config/HAP_config.json \
+--name={コンテナ名} {image名}
+
 (コンテナ内) source /ws_livox/devel/setup.bash
 roslaunch hap_launch.launch
 ```
